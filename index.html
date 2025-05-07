@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calendário Escolar</h1>
+            <div class="month-selector">
+                <button id="prev-year"><i class="fas fa-chevron-double-left"></i></button>
+                <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="current-month">Maio 2023</h2>
+                <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                <button id="next-year"><i class="fas fa-chevron-double-right"></i></button>
+            </div>
+        </header>
+
+        <div class="calendar">
+            <div class="weekdays">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div class="days" id="calendar-days"></div>
+        </div>
+
+        <div class="event-panel">
+            <h3 id="selected-date">Selecione um dia</h3>
+            <div class="event-form">
+                <div class="color-picker">
+                    <span>Cor da nota:</span>
+                    <div class="color-options">
+                        <div class="color-option" data-color="#FF5733" style="background-color: #FF5733;"></div>
+                        <div class="color-option" data-color="#33FF57" style="background-color: #33FF57;"></div>
+                        <div class="color-option" data-color="#3357FF" style="background-color: #3357FF;"></div>
+                        <div class="color-option" data-color="#F033FF" style="background-color: #F033FF;"></div>
+                        <div class="color-option" data-color="#FF33F0" style="background-color: #FF33F0;"></div>
+                        <div class="color-option" data-color="#33FFF0" style="background-color: #33FFF0;"></div>
+                    </div>
+                </div>
+
+
+                <textarea id="event-text" placeholder="Adicione suas anotações aqui..."></textarea>
+                <div class="event-actions">
+                    <button id="save-event" class="btn-primary">Salvar</button>
+                    <button id="send-email" class="btn-secondary">Enviar por Email</button>
+                    <button id="sync-google" class="btn-google">
+                        <i class="fab fa-google"></i> Sincronizar
+                    </button>
+                    <button id="clear-day" class="btn-danger">Limpar Dia</button>
+                </div>
+                <div id="event-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Desenvolvido por <strong>Gledison Arruda Andrade</strong></p>
+    </footer>
+
+    <!-- Modal para email -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Enviar Anotações por Email</h3>
+            <form id="email-form">
+                <div class="form-group">
+                    <label for="email-address">Seu Email:</label>
+                    <input type="email" id="email-address" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-subject">Assunto:</label>
+                    <input type="text" id="email-subject" value="Minhas Anotações do Calendário Escolar" required>
+                </div>
+                <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Google Agenda -->
+    <div id="google-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Sincronizar com Google Agenda</h3>
+            <div id="google-auth-container">
+                <button id="google-auth-btn" class="btn-google">
+                    <i class="fab fa-google"></i> Autenticar com Google
+                </button>
+            </div>
+            <div id="google-sync-options" style="display: none;">
+                <div class="form-group">
+                    <label for="event-title">Título do Evento:</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Horário:</label>
+                    <input type="time" id="event-time" value="08:00">
+                </div>
+                <button id="confirm-sync" class="btn-primary">Sincronizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="js/gapi.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
